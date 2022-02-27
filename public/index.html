@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trickle</title>
@@ -12,63 +13,89 @@
     <script defer src="/__/firebase/9.6.7/firebase-analytics-compat.js"></script>
 
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <script src="app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+    <script defer src="home.js"></script>
+</head>
+
+<body>
     <div id="container">
-      <div id="game">
-        <header>
-          <h1 class="title">TRICKLE</h1>
-        </header>
+        <div id="cont-over" hidden>
+            <div id="full-over"></div>
+            <div id="overlay">
+                <h2>Share this link!</h2>
+                <div id="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                        <path fill="var(--color-tone-1)"
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                        </path>
+                    </svg>
+                </div>
+                <div id="copylink">
 
-        <div id="board-container">
-          <div id="board"></div>
+                </div>
+            </div>
         </div>
-
-        <div id="keyboard-container">
-          <div class="keyboard-row">
-            <button data-key="q">q</button>
-            <button data-key="w">w</button>
-            <button data-key="e">e</button>
-            <button data-key="r">r</button>
-            <button data-key="t">t</button>
-            <button data-key="y">y</button>
-            <button data-key="u">u</button>
-            <button data-key="i">i</button>
-            <button data-key="o">o</button>
-            <button data-key="p">p</button>
-          </div>
-          <div class="keyboard-row">
-            <div class="spacer-half"></div>
-            <button data-key="a">a</button>
-            <button data-key="s">s</button>
-            <button data-key="d">d</button>
-            <button data-key="f">f</button>
-            <button data-key="g">g</button>
-            <button data-key="h">h</button>
-            <button data-key="j">j</button>
-            <button data-key="k">k</button>
-            <button data-key="l">l</button>
-            <div class="spacer-half"></div>
-          </div>
-          <div class="keyboard-row">
-            <button data-key="enter" class="wide-button">Enter</button>
-            <button data-key="z">z</button>
-            <button data-key="x">x</button>
-            <button data-key="c">c</button>
-            <button data-key="v">v</button>
-            <button data-key="b">b</button>
-            <button data-key="n">n</button>
-            <button data-key="m">m</button>
-            <button data-key="del" class="wide-button">Del</button>
-          </div>
+        <div id="homecont">
+            <header>
+                <h1 class="title">TRICKLE</h1>
+            </header>
+            <div id="content">
+                <div id="divCreate">
+                    <a id="create" class="btn">Create game</a>
+                </div>
+                <br>
+                <h2>How to Play TRICKLE</h2>
+                <br>
+                <p>
+                    TRICKLE is a 2-player Wordle variant, in which players are trying to guess the other player's word, while simultaneously thwarting the other player from guessing theirs.
+                    <br><br>For the meaning of colors, normal <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank">Wordle</a> rules apply.
+                    <br><br>Both players start out by choosing an English word to have the other player guess. Let's say you choose HELLO and Player 2 chooses WORLD.
+                    <br><br>The game begins. Let's say Player 2 guesses VIDEO (for your hidden word). In normal Wordle, they would recieve that O was green and E was yellow. In TRICKLE, you get to mess with the results before feedback is sent to the other
+                    player.
+                </p>
+                <div class="board-container">
+                    <div class="word">
+                        <div id="sq1-1" class="square x-in x-out">V</div>
+                        <div id="sq1-1" class="square x-in x-out">I</div>
+                        <div id="sq1-1" class="square x-in x-out">D</div>
+                        <div id="sq1-1" class="square y-in y-out">E</div>
+                        <div id="sq1-1" class="square g-in g-out">O</div>
+                    </div>
+                </div>
+                <p>
+                    Perhaps you think that knowing the letter O is in the last slot gives away too much of the word. You choose to place your TRICKLE on the final tile, and change it to a yellow tile.
+                    <br>**Note: You could have changed O to a gray (incorrect) tile as well. You could have also chosen to keep the O as a green tile.
+                </p>
+                <div class="board-container">
+                    <div class="word">
+                        <div id="sq1-1" class="square x-in x-out">V</div>
+                        <div id="sq1-1" class="square x-in x-out">I</div>
+                        <div id="sq1-1" class="square x-in x-out">D</div>
+                        <div id="sq1-1" class="square y-in y-out">E</div>
+                        <div id="sq1-1" class="square r-out y-in">O</div>
+                    </div>
+                </div>
+                <p>
+                    You can place one TRICKLE each guess. After both players place their TRICKLEs, the manipulated feedback is sent back to the original players. In this case, player 2 would see the following.
+                </p>
+                <div class="board-container">
+                    <div class="word">
+                        <div id="sq1-1" class="square x-in x-out">V</div>
+                        <div id="sq1-1" class="square x-in x-out">I</div>
+                        <div id="sq1-1" class="square x-in x-out">D</div>
+                        <div id="sq1-1" class="square y-in y-out">E</div>
+                        <div id="sq1-1" class="square y-in y-out">O</div>
+                    </div>
+                </div>
+                <p>
+                    Player 2 would know either one tile or no tiles have been TRICKLE'd. The player who guesses the other player's word first wins.
+                </p>
+                <br>
+            </div>
         </div>
-      </div>
     </div>
-  </body>
+
+</body>
+
 </html>

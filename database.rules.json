@@ -1,6 +1,12 @@
 {
-  "rules": {
-    ".read": false,
-    ".write": false
-  }
+    "rules": {
+        "games": {
+            ".read": true,
+            ".write": "newData.exists()"
+        },
+        "gamedata": {
+            ".read": true,
+            ".write": false
+        }
+    }
 }
