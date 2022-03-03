@@ -1,3 +1,4 @@
+let playMode = "DEPLOY";
 let created = false;
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -15,13 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
         firebase.initializeApp(firebaseConfig);
     }
 
+    let uid = localStorage.getItem("uid");
+    if (uid == null || uid == "") {
+        uid = genUUID(20);
+        localStorage.setItem("uid", uid);
+    }
     let db = firebase.database();
     let newGameID;
     document.getElementById("create").addEventListener("click", e => {
 
         if (!created) {
             created = true;
-            newGameID = genUUID();
+            newGameID = genUUID(10);
             let data = {
                 id: newGameID
             }
@@ -29,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(newGameID);
         }
 
-        let server = "http://localhost:5000/"; // https://trick-le.web.app/
+        let server = (playMode == "DEPLOY") ? "https://trick-le.web.app/" : "http://localhost:5000/"; // https://trick-le.web.app/
         document.getElementById("copylink").innerHTML = `${server}play.html?gameid=${newGameID}`;
         document.getElementById("cont-over").hidden = false;
         return;
@@ -42,8 +48,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    function genUUID() {
-        return '' + Math.random().toString(36).substring(2, 12);
-    };
+    function genUUID(length) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() *
+                charactersLength));
+        }
+        return result;
+    }
+
+    console.log(makeid(5));
 
 });

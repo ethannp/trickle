@@ -7,6 +7,10 @@
         "gamedata": {
             ".read": true,
             ".write": false
+        },
+        "secrets": {
+            ".read": false,
+            ".write": false
         }
     }
 }
